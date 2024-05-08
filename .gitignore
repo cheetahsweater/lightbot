@@ -1,0 +1,8 @@
+.env
+notes.txt
+dist/
+build/
+bulbs.txt
+guilds.txt
+lightbot.spec
+compile.bat
