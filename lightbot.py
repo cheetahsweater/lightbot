@@ -15,9 +15,9 @@ import time
 from webcolors import CSS3_NAMES_TO_HEX
 
 status = "around with the lights!"
-versionnum = "Alpha 0.3"
-updatetime = "2024/11/30 00:32"
-changes = "**(Alpha 0.3)** Set it so that all lights is the default and choosing it isn't necessary"
+versionnum = "Alpha 0.4"
+updatetime = "2024/11/30 05:34"
+changes = "**(Alpha 0.3)** Updated so that all lights is actually the default for all of them"
 path = os.getcwd()
 print(f"Lightbot v{versionnum}")
 print(updatetime)
@@ -159,7 +159,7 @@ async def turn_on(ctx: discord.Interaction, color, brightness, light: discord.Op
         await ctx.respond("Error: user not authorized") """
 
 @client.slash_command(description="Turn off a light or all lights!", guild_ids=guilds)
-async def turn_off(ctx: discord.Interaction, light: discord.Option(str, choices=number_choices)): 
+async def turn_off(ctx: discord.Interaction, light: discord.Option(str, choices=number_choices)="all"): 
     await ctx.response.defer()
     # if ctx.author.id in [120396380073099264, 1189313967831646278, 737489390238040144]:
     if light == "all":
@@ -186,7 +186,7 @@ async def turn_off(ctx: discord.Interaction, light: discord.Option(str, choices=
     
 
 @client.slash_command(description="Change the brightness of a light!", guild_ids=guilds)
-async def change_brightness(ctx: discord.Interaction, light: discord.Option(str, choices=number_choices), brightness): 
+async def change_brightness(ctx: discord.Interaction, brightness, light: discord.Option(str, choices=number_choices)="all"): 
     await ctx.response.defer()
     # if ctx.author.id in [120396380073099264, 1189313967831646278, 737489390238040144]:
     if light == "all":
@@ -223,7 +223,7 @@ async def change_brightness(ctx: discord.Interaction, light: discord.Option(str,
         await ctx.respond("Error: user not authorized") """
 
 @client.slash_command(description="Change the color of a light!", guild_ids=guilds)
-async def change_color(ctx: discord.Interaction, light: discord.Option(str, choices=number_choices), color): 
+async def change_color(ctx: discord.Interaction, color, light: discord.Option(str, choices=number_choices)="all"): 
     await ctx.response.defer()
     #if ctx.author.id in [120396380073099264, 1189313967831646278, 737489390238040144]:
     if light == "all":
