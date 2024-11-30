@@ -15,9 +15,9 @@ import time
 from webcolors import CSS3_NAMES_TO_HEX
 
 status = "around with the lights!"
-versionnum = "Alpha 0.2"
-updatetime = "2024/05/08 06:55"
-changes = "**(Alpha 0.2)** Hex codes now possible"
+versionnum = "Alpha 0.3"
+updatetime = "2024/11/30 00:32"
+changes = "**(Alpha 0.3)** Set it so that all lights is the default and choosing it isn't necessary"
 path = os.getcwd()
 print(f"Lightbot v{versionnum}")
 print(updatetime)
@@ -104,12 +104,12 @@ with open(f'{path}\\bulbs.txt',"r+") as file:
     print("Bulb list loaded!")
     file.close()
 
-number_choices = ["all"]
+number_choices = []
 for x in range(len(bulb_ips)):
     number_choices.append(f"Light {x+1}")
 
 @client.slash_command(description="Turn on a light!", guild_ids=guilds)
-async def turn_on(ctx: discord.Interaction, light: discord.Option(str, choices=number_choices), color, brightness): 
+async def turn_on(ctx: discord.Interaction, color, brightness, light: discord.Option(str, choices=number_choices)="all"): 
     await ctx.response.defer()
     # if ctx.author.id in [120396380073099264, 1189313967831646278, 737489390238040144]:
     if light == "all":
